@@ -1,22 +1,42 @@
 ---
-const projectsData = [
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/starwind/card";
+import GithubIcon from "@tabler/icons/outline/brand-github.svg";
+import ExternalLinkIcon from "@tabler/icons/outline/external-link.svg";
+
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  problem: string;
+  solution: string;
+  features: string[];
+  techStack: string[];
+  githubUrl: string;
+  liveUrl?: string;
+  date: string;
+  status: { type: string; text: string };
+}
+
+const projects: Project[] = [
   {
     id: 1,
     title: "Portfolio Website",
     category: "web",
-    description: "Modern portfolio with bubble physics engine, mobile-first design, and performance optimizations.",
+    description: "Modern portfolio with mobile-first design and performance optimizations.",
     problem: "Needed professional portfolio showcasing advanced frontend capabilities across multiple domains.",
-    solution: "Built responsive website with smooth animations, touch interactions, and Cloudflare Pages deployment.",
+    solution: "Built responsive website with clean animations, and Cloudflare Pages deployment.",
     features: [
-      "Bubble physics engine with interactive tech bubbles",
-      "Mobile-first responsive design with touch gestures",
+      "Mobile-first responsive design",
       "Performance optimizations (lazy loading, GPU acceleration)",
-      "Cloudflare Pages hosting with global CDN deployment"
+      "Cloudflare Pages hosting with global CDN deployment",
     ],
-    techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Bootstrap 5"],
+    techStack: ["Astro", "Tailwind CSS", "TypeScript"],
     githubUrl: "https://github.com/nkv-dev/Portfolio-nkv-dev",
     date: "2026-01",
-    status: { type: "active", icon: "🟢", text: "Active", color: "#4CAF50" }
+    status: { type: "active", text: "Active" },
   },
   {
     id: 2,
@@ -29,12 +49,12 @@ const projectsData = [
       "USB keyboard input via Arduino USB Host Shield",
       "Linux desktop integration with GNOME shortcuts",
       "Developer tools with VSCode productivity macros",
-      "Non-blocking execution using millis() timing"
+      "Non-blocking execution using millis() timing",
     ],
-    techStack: ["Arduino Leonardo", "USB Host Shield", "C++"],
+    techStack: ["Arduino", "USB Host Shield", "C++"],
     githubUrl: "https://github.com/nkv-dev/USB-to-USB-key-converter-",
     date: "2026-01",
-    status: { type: "completed", icon: "🔵", text: "Complete", color: "#2196F3" }
+    status: { type: "completed", text: "Complete" },
   },
   {
     id: 3,
@@ -47,13 +67,13 @@ const projectsData = [
       "Real-time entropy calculation using scoring algorithms",
       "Password strength scoring with visual indicators",
       "Brute force time estimation",
-      "Secure password generator with target entropy levels"
+      "Secure password generator with target entropy levels",
     ],
-    techStack: ["Node.js", "Express.js", "HTML5", "CSS3", "JavaScript"],
+    techStack: ["Node.js", "Express.js", "JavaScript"],
     githubUrl: "https://github.com/nkv-dev/password-entropy",
     liveUrl: "https://nkvdevtool.onrender.com/",
     date: "2026-01",
-    status: { type: "completed", icon: "✅", text: "Completed", color: "#4CAF50" }
+    status: { type: "completed", text: "Completed" },
   },
   {
     id: 4,
@@ -66,12 +86,12 @@ const projectsData = [
       "Arduino-based LED laser control system",
       "Bluetooth HC-05 module for wireless control",
       "Interactive laser security demonstration",
-      "Mobile device integration for remote operation"
+      "Mobile device integration for remote operation",
     ],
-    techStack: ["Arduino", "Bluetooth HC-05", "Laser Module", "C++"],
+    techStack: ["Arduino", "Bluetooth HC-05", "C++"],
     githubUrl: "https://github.com/nkv-dev/Lazerlight_security_system_arduio",
     date: "2022-11",
-    status: { type: "archived", icon: "📦", text: "Archived", color: "#607D8B" }
+    status: { type: "archived", text: "Archived" },
   },
   {
     id: 5,
@@ -84,12 +104,12 @@ const projectsData = [
       "Soil moisture sensing",
       "Automated watering system",
       "Mobile notifications",
-      "Environmental data logging"
+      "Environmental data logging",
     ],
-    techStack: ["Arduino", "ESP8266", "Sensors", "Blynk"],
+    techStack: ["Arduino", "ESP8266", "Blynk"],
     githubUrl: "https://github.com/username/plant-monitor",
     date: "2023-05",
-    status: { type: "planned", icon: "🟣", text: "Planned", color: "#9C27B0" }
+    status: { type: "planned", text: "Planned" },
   },
   {
     id: 6,
@@ -102,67 +122,100 @@ const projectsData = [
       "Custom sorting rules",
       "Duplicate file detection",
       "Batch processing operations",
-      "File preview functionality"
+      "File preview functionality",
     ],
-    techStack: ["Python", "Tkinter", "OS Module", "Regex"],
+    techStack: ["Python", "Tkinter"],
     githubUrl: "https://github.com/username/file-organizer",
     date: "2023-03",
-    status: { type: "maintenance", icon: "🔧", text: "Maintenance", color: "#FF9800" }
-  }
+    status: { type: "maintenance", text: "Maintenance" },
+  },
 ];
 
-const initialProjects = 3;
+const statusVariants: Record<string, "default" | "primary" | "success" | "warning" | "secondary" | "info"> = {
+  active: "success",
+  completed: "primary",
+  archived: "secondary",
+  planned: "warning",
+  maintenance: "info",
+};
+
+const categoryLabels: Record<string, string> = {
+  web: "Web",
+  hardware: "Hardware",
+  software: "Software",
+};
 ---
 
-<section class="section projects-section" id="projects">
-  <div class="projects-background">
-    <div class="bubble bubble-1"><i class="devicon-python-plain colored"></i></div>
-    <div class="bubble bubble-2"><i class="devicon-javascript-plain colored"></i></div>
-    <div class="bubble bubble-3"><i class="devicon-c-plain colored"></i></div>
-    <div class="bubble bubble-4"><i class="devicon-php-plain colored"></i></div>
-    <div class="bubble bubble-5"><i class="devicon-cplusplus-plain colored"></i></div>
-    <div class="bubble bubble-6"><i class="devicon-git-plain colored"></i></div>
-    <div class="bubble bubble-7"><i class="devicon-mongodb-plain colored"></i></div>
-    <div class="bubble bubble-8"><i class="devicon-nano-plain colored"></i></div>
-    <div class="bubble bubble-9"><i class="devicon-arduino-plain colored"></i></div>
-    <div class="bubble bubble-10"><i class="devicon-raspberrypi-plain colored"></i></div>
-    <div class="bubble bubble-16"><i class="bi bi-github"></i></div>
-    <div class="bubble bubble-17"><i class="devicon-nodejs-plain colored"></i></div>
-    <div class="bubble bubble-18"><i class="devicon-docker-plain colored"></i></div>
-    <div class="bubble bubble-19"><i class="devicon-react-original colored"></i></div>
-    <div class="bubble bubble-20"><i class="devicon-vuejs-plain colored"></i></div>
-    <div class="bubble bubble-21"><i class="devicon-angularjs-plain colored"></i></div>
-    <div class="bubble bubble-22"><i class="devicon-swift-plain colored"></i></div>
-    <div class="bubble bubble-23"><i class="devicon-go-plain colored"></i></div>
-    <div class="bubble bubble-24"><i class="devicon-rust-plain colored"></i></div>
-    <div class="bubble bubble-25"><i class="devicon-typescript-plain colored"></i></div>
-    <div class="bubble bubble-26"><i class="devicon-tailwindcss-plain colored"></i></div>
-    <div class="bubble bubble-27"><i class="devicon-bootstrap-plain colored"></i></div>
-    <div class="bubble bubble-28"><i class="devicon-sass-plain colored"></i></div>
-    <div class="bubble bubble-29"><i class="devicon-kubernetes-plain colored"></i></div>
-    <div class="bubble bubble-30"><i class="devicon-amazonwebservices-original colored"></i></div>
-  </div>
-
-  <div class="container">
+<section class="scroll-mt-16 border-border/60 border-b bg-background py-24" id="projects">
+  <div class="mx-auto max-w-6xl px-6">
     <div class="text-center">
-      <span class="section-tag">PROJECTS</span>
-      <h2 class="section-title">Featured Projects</h2>
-      <p class="section-subtitle">
+      <Badge variant="outline" eyebrow class="mb-4">Projects</Badge>
+      <h2 class="font-heading text-3xl font-bold tracking-tight sm:text-4xl">Featured Projects</h2>
+      <p class="text-muted-foreground mt-4 text-lg max-w-2xl mx-auto">
         A collection of my work spanning web development, hardware projects, and software tools.
       </p>
     </div>
 
-    <div class="projects-grid" id="projectsContainer" data-projects={JSON.stringify(projectsData)}>
-    </div>
+    <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        projects.map((project) => (
+          <Card class="flex flex-col hover:border-primary/50 transition-colors">
+            <CardHeader>
+              <div class="flex items-start justify-between gap-2">
+                <CardTitle class="text-lg">{project.title}</CardTitle>
+                <Badge
+                  variant={statusVariants[project.status.type] ?? "default"}
+                  size="sm"
+                >
+                  {project.status.text}
+                </Badge>
+              </div>
+              <CardDescription>{project.description}</CardDescription>
+            </CardHeader>
 
-    <div class="load-more-container">
-      <button class="load-more-btn" id="loadMoreBtn" data-initial={initialProjects} data-total={projectsData.length}>
-        Load More Projects
-      </button>
+            <CardContent class="flex-1">
+              <p class="text-muted-foreground text-sm leading-relaxed">
+                <span class="text-foreground font-medium">Problem: </span>{project.problem}
+              </p>
+              <p class="text-muted-foreground mt-2 text-sm leading-relaxed">
+                <span class="text-foreground font-medium">Solution: </span>{project.solution}
+              </p>
+
+              <ul class="mt-4 space-y-1">
+                {project.features.slice(0, 3).map((feature) => (
+                  <li class="text-muted-foreground flex items-start gap-2 text-sm">
+                    <span class="text-primary mt-1.5 size-1.5 shrink-0 rounded-full bg-current"></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                {
+                  project.techStack.map((tech) => (
+                    <Badge key={tech} variant="outline" size="sm">{tech}</Badge>
+                  ))
+                }
+              </div>
+            </CardContent>
+
+            <CardFooter>
+              <Button as="a" href={project.githubUrl} target="_blank" variant="outline" size="sm">
+                <GithubIcon class="size-4" aria-hidden="true" />
+                GitHub
+              </Button>
+              {
+                project.liveUrl && (
+                  <Button as="a" href={project.liveUrl} target="_blank" variant="primary" size="sm">
+                    Live Demo
+                    <ExternalLinkIcon class="size-4" aria-hidden="true" />
+                  </Button>
+                )
+              }
+            </CardFooter>
+          </Card>
+        ))
+      }
     </div>
   </div>
 </section>
-
-<script>
-  import '../scripts/projects.js';
-</script>

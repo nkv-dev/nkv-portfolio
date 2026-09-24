@@ -1,29 +1,97 @@
 ---
+import { Button } from "@/components/starwind/button";
+import ArrowDownIcon from "@tabler/icons/outline/arrow-down.svg";
+import MailIcon from "@tabler/icons/outline/mail.svg";
+import GithubIcon from "@tabler/icons/outline/brand-github.svg";
+import LinkedinIcon from "@tabler/icons/outline/brand-linkedin.svg";
+import XIcon from "@tabler/icons/outline/brand-x.svg";
+import ChevronDownIcon from "@tabler/icons/outline/chevron-down.svg";
 ---
 
-<section class="hero-section" id="hero">
-  <video id="bgVideo" class="bg-video active" autoplay muted playsinline preload="auto"></video>
-  <video id="bgVideo2" class="bg-video inactive" autoplay muted playsinline preload="auto" style="opacity: 0;"></video>
+<section class="hero-section isolate relative flex h-dvh items-center justify-center overflow-hidden" id="hero">
+  <video id="bgVideo" class="absolute inset-0 size-full object-cover" autoplay muted playsinline preload="auto"></video>
+  <video
+    id="bgVideo2"
+    class="absolute inset-0 size-full object-cover"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+    style="opacity: 0"
+  ></video>
 
-  <div class="container hero text-center">
-    <div>
-      <h1 class="fw-bold mb-3">
-        Hi, <span class="text-warning">Nitesh Kumar Verma</span> here
-      </h1>
+  <div class="absolute inset-0 bg-black/50"></div>
 
-      <h3>
-        <span class="typing" id="typing"></span><span class="cursor"></span>
-      </h3>
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-transparent"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent"></div>
 
-      <p class="mt-4 opacity-75">
-        Passionate about building modern web apps and hardware-powered solutions.
-      </p>
+  <div class="container relative z-10 px-6 py-20 text-center">
+    <span class="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-1.5 text-sm font-medium text-amber-400">
+      <span class="relative flex size-2">
+        <span class="absolute inline-flex size-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
+        <span class="relative inline-flex size-2 rounded-full bg-amber-400"></span>
+      </span>
+      Hello, I&apos;m a
+    </span>
 
-      <a href="#projects" class="btn btn-outline-danger mt-3 px-4">
+    <h1 class="font-heading mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+      Hi, <span class="text-amber-400">Nitesh Kumar Verma</span> here
+    </h1>
+
+    <h3 class="font-heading mt-6 flex min-h-[2em] items-center justify-center text-2xl font-semibold text-white/90 sm:text-3xl">
+      <span class="typing" id="typing"></span><span class="cursor"></span>
+    </h3>
+
+    <p class="mx-auto mt-6 max-w-xl text-lg text-white/70 sm:text-xl">
+      Passionate about building modern web apps and hardware-powered solutions.
+    </p>
+
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <Button as="a" href="#projects" size="lg" variant="primary">
         Explore My Work
+        <ArrowDownIcon class="size-4" aria-hidden="true" />
+      </Button>
+      <Button as="a" href="#contact" size="lg" variant="outline">
+        Get in Touch
+        <MailIcon class="size-4" aria-hidden="true" />
+      </Button>
+    </div>
+
+    <div class="mt-8 flex justify-center gap-3">
+      <a
+        href="https://github.com/nkv-dev"
+        target="_blank"
+        class="text-white/70 transition-colors hover:text-amber-400"
+        aria-label="GitHub"
+      >
+        <GithubIcon class="size-5" aria-hidden="true" />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/nitesh-kumar-verma-408249334/"
+        target="_blank"
+        class="text-white/70 transition-colors hover:text-amber-400"
+        aria-label="LinkedIn"
+      >
+        <LinkedinIcon class="size-5" aria-hidden="true" />
+      </a>
+      <a
+        href="https://x.com/nkv_dev"
+        target="_blank"
+        class="text-white/70 transition-colors hover:text-amber-400"
+        aria-label="Twitter"
+      >
+        <XIcon class="size-5" aria-hidden="true" />
       </a>
     </div>
   </div>
+
+  <a
+    href="#about"
+    class="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-white/70 transition-colors hover:text-amber-400"
+    aria-label="Scroll to about section"
+  >
+    <ChevronDownIcon class="size-7 animate-bounce" aria-hidden="true" />
+  </a>
 </section>
 
 <script>

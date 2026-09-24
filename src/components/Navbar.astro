@@ -1,23 +1,59 @@
 ---
+import MenuIcon from "@tabler/icons/outline/menu-2.svg";
+import XIcon from "@tabler/icons/outline/x.svg";
+
+interface NavItem {
+  href: string;
+  label: string;
+}
+
+const navItems: NavItem[] = [
+  { href: "#hero", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#achievements", label: "Achievements" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
+];
 ---
 
-<header class="site-header">
-  <nav class="main-nav" aria-label="Main navigation">
-    <a href="#hero" class="nav-logo">Portfolio</a>
-    
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation menu">
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
-    </button>
-    
-    <ul class="nav-menu" id="navMenu" role="menubar">
-      <li role="none"><a href="#hero" class="nav-link active" role="menuitem">Home</a></li>
-      <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
-      <li role="none"><a href="#achievements" class="nav-link" role="menuitem">Achievements</a></li>
-      <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
-      <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
-    </ul>
+<header class="site-header fixed inset-x-0 top-0 z-40">
+  <div class="scroll-progress absolute inset-x-0 top-0 h-0.5 bg-amber-500/80" style="width: 0%" />
+
+  <nav class="main-nav border-border/60 bg-background/80 backdrop-blur-md" aria-label="Main navigation">
+    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+      <a href="#hero" class="nav-logo text-lg font-semibold tracking-tight text-foreground">
+        nitesh<span class="text-amber-500">.dev</span>
+      </a>
+
+      <button
+        class="nav-toggle text-muted-foreground hover:text-foreground rounded-md p-2 transition-colors md:hidden"
+        id="navToggle"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+        aria-controls="navMenu"
+      >
+        <MenuIcon class="block size-7 md:hidden" aria-hidden="true" />
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <ul class="nav-menu hidden md:flex md:items-center md:gap-1" id="navMenu">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  "nav-link text-muted-foreground hover:text-foreground rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                  item.href === "#hero" && "active text-amber-500",
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </nav>
 </header>
 

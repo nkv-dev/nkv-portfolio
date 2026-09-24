@@ -1,144 +1,126 @@
 ---
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import { Input } from "@/components/starwind/input";
+import { Textarea } from "@/components/starwind/textarea";
+import GithubIcon from "@tabler/icons/outline/brand-github.svg";
+import LinkedinIcon from "@tabler/icons/outline/brand-linkedin.svg";
+import XIcon from "@tabler/icons/outline/brand-x.svg";
+import MailIcon from "@tabler/icons/outline/mail.svg";
+import MapPinIcon from "@tabler/icons/outline/map-pin.svg";
+import ClockIcon from "@tabler/icons/outline/clock.svg";
+import CopyIcon from "@tabler/icons/outline/copy.svg";
+import SendIcon from "@tabler/icons/outline/send.svg";
+import ChevronDownIcon from "@tabler/icons/outline/chevron-down.svg";
+
+const formEndpoint = "https://formspree.io/f/mykpzlag";
 ---
 
-<section class="section contact-section" id="contact">
-  <div class="contact-particles" id="contactParticles">
-    <div class="particle particle-1"></div>
-    <div class="particle particle-2"></div>
-    <div class="particle particle-3"></div>
-    <div class="particle particle-4"></div>
-    <div class="particle particle-5"></div>
-    <div class="particle particle-6"></div>
-    <div class="particle particle-7"></div>
-    <div class="particle particle-8"></div>
-    <div class="particle particle-9"></div>
-    <div class="particle particle-10"></div>
-  </div>
-
-  <div class="container">
-    <div class="text-center mb-5">
-      <span class="section-tag" id="contactTag">CONTACT</span>
-      <h2 class="section-title contact-title" id="contactTitle">Let's Work Together</h2>
-      <p class="section-subtitle contact-subtitle" id="contactSubtitle">
+<section class="scroll-mt-16 bg-background py-24" id="contact">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center">
+      <Badge variant="outline" eyebrow class="mb-4">Contact</Badge>
+      <h2 class="font-heading text-3xl font-bold tracking-tight sm:text-4xl" id="contactTitle">Let's Work Together</h2>
+      <p class="text-muted-foreground mt-4 text-lg max-w-2xl mx-auto">
         Have a project in mind? Let's create something amazing.
       </p>
     </div>
 
-    <div class="contact-container">
-      <div class="contact-info-card" data-tilt>
-        <div class="contact-glow"></div>
-        
-        <div class="contact-header">
-          <div class="contact-avatar">
-            <i class="bi bi-person-circle"></i>
-          </div>
-          <h3>Nitesh Kumar Verma</h3>
-          <p>BCA Student</p>
+    <div class="mt-16 grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+      <div class="bg-card ring-border flex flex-col gap-6 rounded-xl p-8 ring-1">
+        <div class="text-center">
+          <h3 class="text-xl font-semibold">Nitesh Kumar Verma</h3>
+          <p class="text-muted-foreground text-sm">BCA Student</p>
         </div>
 
-        <div class="availability-badge" id="availabilityBadge">
-          <span class="pulse-dot"></span>
-          <span class="availability-text">Open to Work</span>
+        <div class="mx-auto inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5">
+          <span class="relative flex size-2">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
+          </span>
+          <span class="text-emerald-400 text-sm font-medium">Open to Work</span>
         </div>
 
-        <div class="contact-methods">
-          <div class="contact-method" onclick="copyContactEmail('nitesh.techcollab@gmail.com', this)">
-            <div class="method-icon">
-              <i class="bi bi-envelope-fill"></i>
-            </div>
-            <div class="method-info">
-              <span class="method-label">Email</span>
-              <span class="method-value" id="contactEmail">nitesh.techcollab@gmail.com</span>
-            </div>
-            <div class="method-action">
-              <i class="bi bi-clipboard" id="copyIcon"></i>
+        <div class="flex flex-col gap-3">
+          <button
+            type="button"
+            class="group flex items-center gap-4 rounded-lg border border-border bg-background p-4 text-left transition-colors hover:border-amber-500/50"
+            id="copyEmailBtn"
+            onclick="copyEmail(this)"
+          >
+            <span class="bg-primary/10 text-primary inline-flex size-10 shrink-0 items-center justify-center rounded-full">
+              <MailIcon class="size-5" aria-hidden="true" />
+            </span>
+            <span class="min-w-0">
+              <span class="text-muted-foreground block text-xs font-semibold tracking-wider uppercase">Email</span>
+              <span class="block truncate text-sm font-medium">nitesh.techcollab@gmail.com</span>
+            </span>
+            <CopyIcon class="text-muted-foreground group-hover:text-primary ml-auto size-4 shrink-0 transition-colors" aria-hidden="true" />
+          </button>
+
+          <div class="flex items-center gap-4 rounded-lg border border-border bg-background p-4">
+            <span class="bg-primary/10 text-primary inline-flex size-10 shrink-0 items-center justify-center rounded-full">
+              <MapPinIcon class="size-5" aria-hidden="true" />
+            </span>
+            <div class="min-w-0">
+              <span class="text-muted-foreground block text-xs font-semibold tracking-wider uppercase">Location</span>
+              <span class="block text-sm font-medium">Bangalore, India</span>
             </div>
           </div>
 
-          <div class="contact-method">
-            <div class="method-icon">
-              <i class="bi bi-geo-alt-fill"></i>
-            </div>
-            <div class="method-info">
-              <span class="method-label">Location</span>
-              <span class="method-value">Bangalore, India</span>
-            </div>
-          </div>
-
-          <div class="contact-method">
-            <div class="method-icon">
-              <i class="bi bi-clock-fill"></i>
-            </div>
-            <div class="method-info">
-              <span class="method-label">Response Time</span>
-              <span class="method-value">Usually within 24 hours</span>
+          <div class="flex items-center gap-4 rounded-lg border border-border bg-background p-4">
+            <span class="bg-primary/10 text-primary inline-flex size-10 shrink-0 items-center justify-center rounded-full">
+              <ClockIcon class="size-5" aria-hidden="true" />
+            </span>
+            <div class="min-w-0">
+              <span class="text-muted-foreground block text-xs font-semibold tracking-wider uppercase">Response Time</span>
+              <span class="block text-sm font-medium">Usually within 24 hours</span>
             </div>
           </div>
         </div>
 
-        <div class="contact-social-section">
-          <span class="social-label">Connect With Me</span>
-          <div class="contact-social-links" id="contactSocialLinks">
-            <a href="https://github.com/nkv-dev" target="_blank" class="contact-social-link github" data-social="github" title="GitHub" aria-label="GitHub">
-              <i class="bi bi-github"></i>
-              <span class="tooltip">GitHub</span>
+        <div class="mt-auto border-t border-border pt-6">
+          <span class="text-muted-foreground text-xs font-semibold tracking-wider uppercase">Connect With Me</span>
+          <div class="mt-4 flex gap-3">
+            <a href="https://github.com/nkv-dev" target="_blank" class="text-muted-foreground hover:text-amber-500 transition-colors" aria-label="GitHub">
+              <GithubIcon class="size-6" />
             </a>
-            <a href="https://www.linkedin.com/in/nitesh-kumar-verma-408249334/" target="_blank" class="contact-social-link linkedin" data-social="linkedin" title="LinkedIn" aria-label="LinkedIn">
-              <i class="bi bi-linkedin"></i>
-              <span class="tooltip">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/nitesh-kumar-verma-408249334/" target="_blank" class="text-muted-foreground hover:text-amber-500 transition-colors" aria-label="LinkedIn">
+              <LinkedinIcon class="size-6" />
             </a>
-            <a href="https://x.com/nkv_dev" target="_blank" class="contact-social-link twitter" data-social="twitter" title="X (Twitter)" aria-label="Twitter">
-              <i class="bi bi-twitter-x"></i>
-              <span class="tooltip">X (Twitter)</span>
+            <a href="https://x.com/nkv_dev" target="_blank" class="text-muted-foreground hover:text-amber-500 transition-colors" aria-label="X (Twitter)">
+              <XIcon class="size-6" />
             </a>
-            <a href="mailto:nitesh.techcollab@gmail.com" class="contact-social-link email" data-social="email" title="Email" aria-label="Email">
-              <i class="bi bi-envelope-fill"></i>
-              <span class="tooltip">Email</span>
+            <a href="mailto:nitesh.techcollab@gmail.com" class="text-muted-foreground hover:text-amber-500 transition-colors" aria-label="Email">
+              <MailIcon class="size-6" />
             </a>
           </div>
         </div>
       </div>
 
-      <div class="contact-form-card" data-tilt>
-        <div class="form-glow"></div>
-        
+      <div class="bg-card ring-border rounded-xl p-8 ring-1">
         <div class="form-header">
-          <h3>Send Me a Message</h3>
-          <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+          <h3 class="text-xl font-semibold">Send Me a Message</h3>
+          <p class="text-muted-foreground mt-1 text-sm">Fill out the form below and I'll get back to you as soon as possible.</p>
         </div>
 
-        <form id="contactForm" action="https://formspree.io/f/mykpzlag" method="POST" class="contact-form">
-          <input type="hidden" name="_subject" value="New message from portfolio!">
+        <form id="contactForm" action={formEndpoint} method="POST" class="contact-form mt-6 grid gap-5" novalidate>
+          <input type="hidden" name="_subject" value="New message from portfolio!" />
 
-          <div class="form-group">
-            <label class="form-label" for="name">
-              Your Name <span class="required">*</span>
-            </label>
-            <div class="input-wrapper">
-              <i class="bi bi-person input-icon"></i>
-              <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required />
-            </div>
-            <span class="error-message">Please enter your name</span>
+          <div class="form-group grid gap-2">
+            <label class="text-sm font-medium" for="name">Your Name <span class="text-error">*</span></label>
+            <Input type="text" id="name" name="name" placeholder="John Doe" required />
           </div>
 
-          <div class="form-group">
-            <label class="form-label" for="email">
-              Your Email <span class="required">*</span>
-            </label>
-            <div class="input-wrapper">
-              <i class="bi bi-envelope input-icon"></i>
-              <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required />
-            </div>
-            <span class="error-message">Please enter a valid email</span>
+          <div class="form-group grid gap-2">
+            <label class="text-sm font-medium" for="email">Your Email <span class="text-error">*</span></label>
+            <Input type="email" id="email" name="email" placeholder="john@example.com" required />
           </div>
 
-          <div class="form-group">
-            <label class="form-label" for="subject">
-              Subject <span class="required">*</span>
-            </label>
-            <div class="input-wrapper">
-              <i class="bi bi-chat-left-text input-icon"></i>
-              <select id="subject" name="subject" class="form-input form-select" required>
+          <div class="form-group grid gap-2">
+            <label class="text-sm font-medium" for="subject">Subject <span class="text-error">*</span></label>
+            <div class="relative">
+              <select id="subject" name="subject" class="border-input dark:bg-input/30 text-foreground focus-visible:border-outline focus-visible:ring-outline/50 flex w-full appearance-none rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] focus-visible:ring-3 focus-visible:outline-none" required>
                 <option value="" disabled selected>Select a subject...</option>
                 <option value="project">Project Collaboration</option>
                 <option value="job">Job Opportunity</option>
@@ -146,59 +128,41 @@
                 <option value="mentorship">Mentorship</option>
                 <option value="other">Other</option>
               </select>
+              <ChevronDownIcon class="text-muted-foreground pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2" aria-hidden="true" />
             </div>
-            <span class="error-message">Please select a subject</span>
           </div>
 
-          <div class="form-group">
-            <label class="form-label" for="message">
-              Your Message <span class="required">*</span>
-            </label>
-            <div class="input-wrapper textarea-wrapper">
-              <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project, idea, or opportunity..." rows="4" maxlength="1000" required></textarea>
-              <div class="char-counter">
+          <div class="form-group grid gap-2">
+            <label class="text-sm font-medium" for="message">Your Message <span class="text-error">*</span></label>
+            <div class="relative">
+              <Textarea id="message" name="message" class="pb-8" placeholder="Tell me about your project, idea, or opportunity..." rows={4} maxlength={1000} required />
+              <span class="text-muted-foreground absolute bottom-2 right-3 text-xs">
                 <span id="charCount">0</span> / 1000
-              </div>
+              </span>
             </div>
-            <span class="error-message">Please enter your message</span>
           </div>
 
-          <button type="submit" class="submit-btn" id="submitBtn">
+          <Button type="submit" id="submitBtn" variant="primary" size="lg" class="w-full">
             <span class="btn-text">Send Message</span>
-            <i class="bi bi-send-fill btn-icon"></i>
-            <span class="btn-loader" style="display: none;">
-              <span class="spinner"></span>
+            <SendIcon class="btn-icon size-4" aria-hidden="true" />
+            <span class="btn-loader hidden items-center gap-2">
+              <span class="border-background/40 size-4 animate-spin rounded-full border-2 border-t-background"></span>
               <span>Sending...</span>
             </span>
-          </button>
+          </Button>
         </form>
 
-        <div class="form-message success" id="successMessage" style="display: none;">
-          <div class="message-icon">
-            <i class="bi bi-check-circle-fill"></i>
-          </div>
-          <div class="message-content">
-            <h4>Message Sent!</h4>
-            <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
-          </div>
+        <div class="form-message mt-6 hidden rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-6 text-center" id="successMessage" aria-live="polite">
+          <h4 class="text-emerald-500 font-semibold">Message Sent!</h4>
+          <p class="text-muted-foreground mt-1 text-sm">Thank you for reaching out. I'll get back to you within 24 hours.</p>
         </div>
 
-        <div class="form-message error" id="errorMessage" style="display: none;">
-          <div class="message-icon">
-            <i class="bi bi-x-circle-fill"></i>
-          </div>
-          <div class="message-content">
-            <h4>Oops!</h4>
-            <p>Something went wrong. Please try again or email me directly.</p>
-          </div>
+        <div class="form-message mt-6 hidden rounded-lg border border-error/30 bg-error/10 p-6 text-center" id="errorMessage" aria-live="polite">
+          <h4 class="text-error font-semibold">Oops!</h4>
+          <p class="text-muted-foreground mt-1 text-sm">Something went wrong. Please try again or email me directly.</p>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="toast-notification" id="toastNotification">
-    <i class="bi bi-check-circle-fill"></i>
-    <span id="toastMessage">Email copied to clipboard!</span>
   </div>
 </section>
 
@@ -207,35 +171,14 @@
 </script>
 
 <script is:global>
-  function copyContactEmail(email, element) {
-    navigator.clipboard.writeText(email).then(() => {
-      const icon = element.querySelector('#copyIcon');
-      if (icon) {
-        icon.className = 'bi bi-check2';
-        icon.style.color = '#22c55e';
-        
-        setTimeout(() => {
-          icon.className = 'bi bi-clipboard';
-          icon.style.color = '';
-        }, 2000);
-      }
-      
-      const toast = document.getElementById('toastNotification');
-      const toastMessage = document.getElementById('toastMessage');
-      toastMessage.textContent = 'Email copied to clipboard!';
-      toast.style.background = '#22c55e';
-      toast.classList.add('show');
-      
-      element.style.borderColor = '#22c55e';
-      setTimeout(() => {
-        element.style.borderColor = '';
-      }, 2000);
-      
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }).catch(err => {
-      console.error('Failed to copy:', err);
-    });
+  import { toast } from "@/components/starwind/toast";
+
+  async function copyEmail(btn) {
+    try {
+      await navigator.clipboard.writeText("nitesh.techcollab@gmail.com");
+      toast.success("Email copied to clipboard!");
+    } catch {
+      toast.error("Failed to copy email");
+    }
   }
 </script>
